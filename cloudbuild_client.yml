@@ -1,15 +1,15 @@
 steps:
 
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['config', 'set', 'project', 'prodiego2']
+  args: ['config', 'set', 'project', 'prodiego3']
 
 # Build the container image
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/prodiego2/repoejergcp/minode/mimagenbuildclient:1.0', '.']
+  args: ['build', '-t', 'europe-west1-docker.pkg.dev/prodiego3/miregistry/minodereact:v1', '.']
 
 # Push the container image to Container Registry
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/prodiego2/repoejergcp/minode/mimagenbuildclient:1.0']
+  args: ['push', 'europe-west1-docker.pkg.dev/prodiego3/miregistry/minodereact:v1']
 
 # Deploy container image to Cloud Run
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -17,9 +17,12 @@ steps:
   args: [
     "-c",
     "gcloud run deploy react-nodejs-cloudbuilds-client 
-    --image=gcr.io/prodiego2/repoejergcp/minode/mimagenbuildclient:1.0
+    --image=europe-west1-docker.pkg.dev/prodiego3/miregistry/minodereact:v1
     --region=europe-west1 
     --platform=managed 
     --allow-unauthenticated 
     --port=5173"
   ]
+
+images:
+- 'europe-west1-docker.pkg.dev/prodiego3/miregistry/minodereact:v1'

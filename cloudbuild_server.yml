@@ -1,15 +1,15 @@
 steps:
 
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['config', 'set', 'project', 'prodiego2']
+  args: ['config', 'set', 'project', 'prodiego3']
 
 # Build the container images
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/prodiego2/repoejergcp/minode/mimagenbuild:1.0', '-f', 'server/Dockerfile', '.']
+  args: ['build', '-t', 'europe-west1-docker.pkg.dev/prodiego3/miregistry/minode:v1', '-f', 'server/Dockerfile', '.']
 
 # Push the container image to Container Registry
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/prodiego2/repoejergcp/minode/mimagenbuild:1.0']
+  args: ['push', 'europe-west1-docker.pkg.dev/prodiego3/miregistry/minode:v1']
 
 # Deploy container image to Cloud Run
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -17,7 +17,7 @@ steps:
   args: [
     "-c",
     "gcloud run deploy react-nodejs-cloudbuilds-server 
-    --image=gcr.io/prodiego2/repoejergcp/minode/mimagenbuild:1.0
+    --europe-west1-docker.pkg.dev/prodiego3/miregistry/minode:v1
     --region=europe-west1 
     --platform=managed 
     --allow-unauthenticated 
@@ -29,9 +29,9 @@ steps:
     'DB_URL_ATLASbuild'
   ]
 images:
-- 'gcr.io/prodiego2/repoejergcp/minode/mimagenbuild:1.0'
+- 'europe-west1-docker.pkg.dev/prodiego3/miregistry/minode:v1'
 
 availableSecrets:
   secretManager:
-    - versionName: projects/89654536036/secrets/secreto2/versions/1
+    - versionName: projects/277567353585/secrets/secreto2/versions/1
       env: 'DB_URL_ATLASbuild'
