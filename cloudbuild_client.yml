@@ -21,17 +21,5 @@ steps:
     --region=europe-west1 
     --platform=managed 
     --allow-unauthenticated 
-    --port=5173 
-    --update-env-vars DB_URL_ATLAS=$$DB_URL_ATLAS"
+    --port=5173"
   ]
-
-#   secretEnv: [
-#     'DB_URL_ATLAS'
-#   ]
-# images:
-# - 'gcr.io/prodiego2/repoejergcp/minode/mimagenbuildclient:1.0'
-
-# availableSecrets:
-#   secretManager:
-#     - versionName: projects/623401579225/secrets/DB_URL_ATLAS/versions/latest
-#       env: 'DB_URL_ATLAS'
