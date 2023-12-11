@@ -34,4 +34,4 @@ images:
 availableSecrets:
   secretManager:
     - versionName: projects/89654536036/secrets/secreto2/versions/1
-      env: 'DB_URL_ATLASbuild'
+      env: 'DB_URL_ATLASbuild' 
