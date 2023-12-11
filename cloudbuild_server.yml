@@ -3,7 +3,7 @@ steps:
 - name: 'gcr.io/cloud-builders/gcloud'
   args: ['config', 'set', 'project', 'prodiego2']
 
-# Build the container image
+# Build the container images
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'gcr.io/prodiego2/repoejergcp/minode/mimagenbuild:1.0', '-f', 'server/Dockerfile', '.']
 
@@ -34,4 +34,4 @@ images:
 availableSecrets:
   secretManager:
     - versionName: projects/89654536036/secrets/secreto2/versions/1
-      env: 'DB_URL_ATLASbuild' 
+      env: 'DB_URL_ATLASbuild'
