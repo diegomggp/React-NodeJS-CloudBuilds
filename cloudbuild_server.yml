@@ -22,16 +22,16 @@ steps:
     --platform=managed 
     --allow-unauthenticated 
     --port=3000 
-    --update-env-vars DB_URL_ATLAS=$$DB_URL_ATLAS"
+    --update-env-vars DB_URL_ATLAS=$$DB_URL_ATLASbuild"
   ]
 
   secretEnv: [
-    'DB_URL_ATLAS'
+    'DB_URL_ATLASbuild'
   ]
 images:
 - 'gcr.io/prodiego2/repoejergcp/minode/mimagenbuild:1.0'
 
 availableSecrets:
   secretManager:
-    - versionName: projects/89654536036/secrets/secreto2
-      env: 'DB_URL_ATLAS'
+    - versionName: projects/89654536036/secrets/secreto2/versions/1
+      env: 'DB_URL_ATLASbuild'
