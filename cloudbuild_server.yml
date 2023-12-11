@@ -16,12 +16,12 @@ steps:
   entrypoint: bash
   args: [
     "-c",
-    "gcloud run deploy react-nodejs-cloudbuilds-server 
+    "gcloud run deploy react-nodejs-cloudbuilds-server
     --image=europe-west1-docker.pkg.dev/prodiego3/miregistry/minode:v1
-    --region=europe-west1 
-    --platform=managed 
-    --allow-unauthenticated 
-    --port=3000 
+    --region=europe-west1
+    --platform=managed
+    --allow-unauthenticated
+    --port=3000
     --update-env-vars DB_URL_ATLAS=$$DB_URL_ATLASbuild"
   ]
 
