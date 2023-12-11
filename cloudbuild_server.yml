@@ -22,11 +22,11 @@ steps:
     --platform=managed
     --allow-unauthenticated
     --port=3000
-    --update-env-vars DB_URL_ATLAS=$$DB_URL_ATLASbuild"
+    --update-env-vars DB_URL_ATLAS=$$DB_URL_ATLAS"
   ]
 
   secretEnv: [
-    'DB_URL_ATLASbuild'
+    'DB_URL_ATLAS'
   ]
 images:
 - 'europe-west1-docker.pkg.dev/prodiego3/miregistry/minode:v1'
@@ -34,4 +34,4 @@ images:
 availableSecrets:
   secretManager:
     - versionName: projects/277567353585/secrets/secreto2/versions/1
-      env: 'DB_URL_ATLASbuild'
+      env: 'DB_URL_ATLAS'
