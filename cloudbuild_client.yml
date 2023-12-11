@@ -5,7 +5,7 @@ steps:
 
 # Build the container image
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'europe-west1-docker.pkg.dev/prodiego3/miregistry/minodereact:v1', '.']
+  args: ['build', '-t', 'europe-west1-docker.pkg.dev/prodiego3/miregistry/minodereact:v1', '-f', 'client/Dockerfile', '.']
 
 # Push the container image to Container Registry
 - name: 'gcr.io/cloud-builders/docker'
