@@ -1,15 +1,15 @@
 steps:
 
 - name: 'gcr.io/cloud-builders/gcloud'
-  args: ['config', 'set', 'project', 'thebridgeschool-cloud']
+  args: ['config', 'set', 'project', 'prodiego2']
 
 # Build the container image
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/$PROJECT_ID/users-app-client:$COMMIT_SHA', '-f', 'client/Dockerfile', '.']
+  args: ['build', '-t', 'gcr.io/prodiego2/repoejergcp/minode/mimagenbuildclient:1.0', '.']
 
 # Push the container image to Container Registry
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/$PROJECT_ID/users-app-client:$COMMIT_SHA']
+  args: ['push', 'gcr.io/prodiego2/repoejergcp/minode/mimagenbuildclient:1.0']
 
 # Deploy container image to Cloud Run
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
@@ -17,7 +17,7 @@ steps:
   args: [
     "-c",
     "gcloud run deploy react-nodejs-cloudbuilds-client 
-    --image=gcr.io/$PROJECT_ID/users-app-client:$COMMIT_SHA 
+    --image=gcr.io/prodiego2/repoejergcp/minode/mimagenbuildclient:1.0
     --region=europe-west1 
     --platform=managed 
     --allow-unauthenticated 
@@ -25,13 +25,13 @@ steps:
     --update-env-vars DB_URL_ATLAS=$$DB_URL_ATLAS"
   ]
 
-  secretEnv: [
-    'DB_URL_ATLAS'
-  ]
-images:
-- 'gcr.io/$PROJECT_ID/users-app-client:$COMMIT_SHA'
+#   secretEnv: [
+#     'DB_URL_ATLAS'
+#   ]
+# images:
+# - 'gcr.io/prodiego2/repoejergcp/minode/mimagenbuildclient:1.0'
 
-availableSecrets:
-  secretManager:
-    - versionName: projects/623401579225/secrets/DB_URL_ATLAS/versions/latest
-      env: 'DB_URL_ATLAS'
+# availableSecrets:
+#   secretManager:
+#     - versionName: projects/623401579225/secrets/DB_URL_ATLAS/versions/latest
+#       env: 'DB_URL_ATLAS'
